@@ -195,12 +195,47 @@ section h2{font-size:42px;font-weight:700;margin-top:10px;}
 .progress{height:12px;border-radius:30px;background:#334155;overflow:hidden;}
 
 .progress-bar{
-    font-weight:600;font-size:13px;
-    display:flex;justify-content:center;align-items:center;
-    transition:2s;
+    font-weight:600;
+    font-size:13px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+
+    /* Smooth fill */
+    transition:width 1.8s cubic-bezier(.65,0,.35,1);
 }
 
-.bg-purple{background:#7c3aed !important;}
+/* Shining effect */
+.progress-bar::after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:50%;
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.45),
+        transparent
+    );
+
+    animation:skillShine 2s ease-in-out;
+    pointer-events:none;
+}
+
+@keyframes skillShine{
+    0%{
+        left:-100%;
+    }
+
+    100%{
+        left:150%;
+    }
+}
 
 /* ========== EXPERIENCE ========== */
 .experience-card{
